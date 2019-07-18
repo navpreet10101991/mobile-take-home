@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/episodeName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/primaryTextSize"/>
+
+        <TextView
+            android:id="@+id/createDate"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="start"
+            android:padding="5dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/primaryTextSize"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

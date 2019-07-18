@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">RickAndMorty</string>
     <string name="action_settings">Settings</string>
+
+    <string name="episodeName"> %1$s : %2$s</string>
+
 </resources>
