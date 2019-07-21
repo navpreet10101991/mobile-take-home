@@ -2,6 +2,7 @@ package com.example.rickandmorty.activities.characterDetail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import com.example.rickandmorty.model.CharacterResultModel;
@@ -16,6 +17,7 @@ import com.example.rickandmorty.R;
 
 public class CharacterDetailActivity extends AppCompatActivity {
 
+    private CharacterDetailPresenter characterDetailPresenter;
     private ImageView imageView;
     private TextView name, status;
 
@@ -33,6 +35,8 @@ public class CharacterDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_character_detail);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        characterDetailPresenter = new CharacterDetailPresenter(this);
 
         inflateViews();
         showDetails();
@@ -57,13 +61,18 @@ public class CharacterDetailActivity extends AppCompatActivity {
                 }
             }
         }
-
     }
 
     private void setFields(CharacterResultModel characterResultModel) {
 
+        characterDetailPresenter.getImage(characterResultModel.getImage());
+
         imageView.setImageResource(R.drawable.ic_launcher_background);
         name.setText(characterResultModel.getName());
         status.setText(characterResultModel.getStatus());
+    }
+
+    void setImage(Bitmap bitmap) {
+        imageView.setImageBitmap(bitmap);
     }
 }

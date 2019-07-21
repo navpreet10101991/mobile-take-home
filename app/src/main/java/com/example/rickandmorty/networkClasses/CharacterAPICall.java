@@ -1,10 +1,14 @@
 package com.example.rickandmorty.networkClasses;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.rickandmorty.model.CharacterResultModel;
 import com.example.rickandmorty.model.LocationData;
 import com.example.rickandmorty.model.Origin;
+import com.example.rickandmorty.networkClasses.responseInterface.CharacterDetailResponseInterface;
 import com.example.rickandmorty.networkClasses.responseInterface.CharacterResponseInterface;
 
 import org.json.JSONArray;
@@ -23,9 +27,14 @@ import java.util.ArrayList;
 public class CharacterAPICall {
 
     private CharacterResponseInterface characterResponseInterface;
+    private CharacterDetailResponseInterface characterDetailResponseInterface;
 
     CharacterAPICall(CharacterResponseInterface characterResponseInterface) {
         this.characterResponseInterface = characterResponseInterface;
+    }
+
+    CharacterAPICall(CharacterDetailResponseInterface characterDetailResponseInterface) {
+        this.characterDetailResponseInterface = characterDetailResponseInterface;
     }
 
     void fetchCharacterInEpisode(ArrayList<String> url) {
@@ -166,5 +175,32 @@ public class CharacterAPICall {
             jsonException.printStackTrace();
         }
         return null;
+    }
+
+    /*
+     * Character Details
+     * */
+    void getImage(String url) {
+
+        new DownloadImageTask().execute(url);
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+
+        protected Bitmap doInBackground(String... urls) {
+            String url = urls[0];
+            Bitmap image = null;
+            try {
+                InputStream in = new java.net.URL(url).openStream();
+                image = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return image;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            characterDetailResponseInterface.characterImage(result);
+        }
     }
 }

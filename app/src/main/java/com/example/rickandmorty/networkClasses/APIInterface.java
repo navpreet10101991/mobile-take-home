@@ -6,4 +6,5 @@ public interface APIInterface {
 
     void fetchAllEpisodes();
     void fetchCharacters(ArrayList<String> characterList);
+    void fetchCharacterImage(String url);
 }
