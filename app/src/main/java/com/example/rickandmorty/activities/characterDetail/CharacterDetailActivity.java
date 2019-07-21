@@ -19,7 +19,7 @@ public class CharacterDetailActivity extends AppCompatActivity {
 
     private CharacterDetailPresenter characterDetailPresenter;
     private ImageView imageView;
-    private TextView name, status;
+    private TextView name, status, gender, species, type, createdOn;
 
     public static Intent newIntent(Context context, CharacterResultModel characterResultModel) {
 
@@ -29,10 +29,13 @@ public class CharacterDetailActivity extends AppCompatActivity {
         intent.putExtra("data", bundle);
         return intent;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_detail);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -47,6 +50,10 @@ public class CharacterDetailActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         name = findViewById(R.id.name);
         status = findViewById(R.id.status);
+        gender = findViewById(R.id.gender);
+        species = findViewById(R.id.species);
+        type = findViewById(R.id.type);
+        createdOn = findViewById(R.id.createdOn);
     }
 
     private void showDetails() {
@@ -65,11 +72,14 @@ public class CharacterDetailActivity extends AppCompatActivity {
 
     private void setFields(CharacterResultModel characterResultModel) {
 
-        characterDetailPresenter.getImage(characterResultModel.getImage());
+        name.setText(String.format(getString(R.string.stringName), "Name", characterResultModel.getName()));
+        status.setText(String.format(getString(R.string.stringName), "Status", characterResultModel.getStatus()));
+        gender.setText(String.format(getString(R.string.stringName), "Gender", characterResultModel.getGender()));
+        species.setText(String.format(getString(R.string.stringName), "Species", characterResultModel.getSpecies()));
+        type.setText(String.format(getString(R.string.stringName), "Type", characterResultModel.getType()));
+        createdOn.setText(String.format(getString(R.string.stringName), "Created On", characterResultModel.getCreated()));
 
-        imageView.setImageResource(R.drawable.ic_launcher_background);
-        name.setText(characterResultModel.getName());
-        status.setText(characterResultModel.getStatus());
+        characterDetailPresenter.getImage(characterResultModel.getImage());
     }
 
     void setImage(Bitmap bitmap) {

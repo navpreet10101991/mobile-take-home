@@ -14,6 +14,7 @@ import com.example.rickandmorty.networkClasses.responseInterface.CharacterRespon
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -180,6 +181,7 @@ public class CharacterAPICall {
     /*
      * Character Details
      * */
+    // Image
     void getImage(String url) {
 
         new DownloadImageTask().execute(url);

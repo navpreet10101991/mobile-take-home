@@ -39,7 +39,7 @@ class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHold
     @Override
     public void onBindViewHolder(@NonNull EpisodeViewHolder holder, int position) {
 
-        holder.episodeName.setText(String.format(context.getString(R.string.episodeName), episodesArrayList.get(position).getEpisode(), episodesArrayList.get(position).getName()));
+        holder.episodeName.setText(String.format(context.getString(R.string.stringName), episodesArrayList.get(position).getEpisode(), episodesArrayList.get(position).getName()));
         holder.createDate.setText(Utilities.changeDateStyle(episodesArrayList.get(position).getCreated(), Keys.NETWORKING_INCOMING_FORMAT, Keys.DISPLAYING_FORMAT));
     }
 
