@@ -1,8 +1,11 @@
 package com.example.rickandmorty.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class EpisodeResultModel {
+public class EpisodeResultModel implements Parcelable {
     
     private Integer id;
     private String name;
@@ -11,6 +14,36 @@ public class EpisodeResultModel {
     private ArrayList<String> characters = null;
     private String url;
     private String created;
+
+    public EpisodeResultModel() {
+
+    }
+
+    protected EpisodeResultModel(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        name = in.readString();
+        air_date = in.readString();
+        episode = in.readString();
+        characters = in.createStringArrayList();
+        url = in.readString();
+        created = in.readString();
+    }
+
+    public static final Creator<EpisodeResultModel> CREATOR = new Creator<EpisodeResultModel>() {
+        @Override
+        public EpisodeResultModel createFromParcel(Parcel in) {
+            return new EpisodeResultModel(in);
+        }
+
+        @Override
+        public EpisodeResultModel[] newArray(int size) {
+            return new EpisodeResultModel[size];
+        }
+    };
 
     public Integer getId() {
         return id;
@@ -66,5 +99,26 @@ public class EpisodeResultModel {
 
     public void setCreated(String created) {
         this.created = created;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(id);
+        }
+        parcel.writeString(name);
+        parcel.writeString(air_date);
+        parcel.writeString(episode);
+        parcel.writeStringList(characters);
+        parcel.writeString(url);
+        parcel.writeString(created);
     }
 }

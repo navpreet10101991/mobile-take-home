@@ -5,17 +5,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="10dp"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/episodeName"
+            android:id="@+id/characterName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
@@ -24,16 +23,16 @@
             android:textColor="@android:color/black"
             android:textSize="@dimen/primaryTextSize"/>
 
+        <!--STATUS-->
         <TextView
-            android:id="@+id/createDate"
+            android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:gravity="start"
+            android:gravity="center_vertical"
             android:padding="5dp"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/primaryTextSize"/>
 
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

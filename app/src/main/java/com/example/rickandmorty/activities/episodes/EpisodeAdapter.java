@@ -7,25 +7,26 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rickandmorty.R;
 import com.example.rickandmorty.model.EpisodeResultModel;
-import com.example.rickandmorty.model.Episodes;
 import com.example.rickandmorty.utilities.Keys;
 import com.example.rickandmorty.utilities.Utilities;
 
-import java.security.Key;
 import java.util.ArrayList;
 
 class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHolder> {
 
     private ArrayList<EpisodeResultModel> episodesArrayList;
     private Context context;
+    private EpisodeSelection episodeSelection;
 
-    EpisodeAdapter(ArrayList<EpisodeResultModel> episodesArrayList, Context context) {
+    EpisodeAdapter(ArrayList<EpisodeResultModel> episodesArrayList, Context context, EpisodeSelection episodeSelection) {
         this.episodesArrayList = episodesArrayList;
         this.context = context;
+        this.episodeSelection = episodeSelection;
     }
 
     @NonNull
@@ -52,6 +53,7 @@ class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHold
 
     class EpisodeViewHolder extends RecyclerView.ViewHolder {
 
+        private CardView mainCardLayout;
         private TextView episodeName;
         private TextView createDate;
 
@@ -59,12 +61,25 @@ class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHold
             super(itemView);
 
             inflateViews(itemView);
+            setClickListeners();
         }
 
         private void inflateViews(View itemView) {
 
+            mainCardLayout = itemView.findViewById(R.id.mainCardLayout);
             episodeName = itemView.findViewById(R.id.episodeName);
             createDate = itemView.findViewById(R.id.createDate);
+        }
+
+        private void setClickListeners() {
+
+            mainCardLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EpisodeResultModel episodeResultModel = episodesArrayList.get(getAdapterPosition());
+                    episodeSelection.episodeSelected(episodeResultModel);
+                }
+            });
         }
     }
 }

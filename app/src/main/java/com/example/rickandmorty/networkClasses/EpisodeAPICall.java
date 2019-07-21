@@ -21,11 +21,9 @@ import java.util.ArrayList;
 
 class EpisodeAPICall {
 
-    private Context context;
     private EpisodeResponseInterface episodeResponseInterface;
 
-    EpisodeAPICall(Context context, EpisodeResponseInterface episodeResponseInterface) {
-        this.context = context;
+    EpisodeAPICall(EpisodeResponseInterface episodeResponseInterface) {
         this.episodeResponseInterface = episodeResponseInterface;
     }
 

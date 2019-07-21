@@ -3,6 +3,7 @@ package com.example.rickandmorty.activities.episodes;
 import android.os.Bundle;
 
 import com.example.rickandmorty.R;
+import com.example.rickandmorty.activities.characters.CharactersActivity;
 import com.example.rickandmorty.model.EpisodeResultModel;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,7 +41,17 @@ public class EpisodesActivity extends AppCompatActivity {
 
     void setRecyclerViewAdapter(ArrayList<EpisodeResultModel> episodeResultModelArrayList) {
         episodeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        EpisodeAdapter episodeAdapter = new EpisodeAdapter(episodeResultModelArrayList, this);
+        EpisodeAdapter episodeAdapter = new EpisodeAdapter(episodeResultModelArrayList, this, new EpisodeSelection() {
+
+            @Override
+            public void episodeSelected(EpisodeResultModel episodeResultModel) {
+                startActivity(CharactersActivity.createIntent(EpisodesActivity.this, episodeResultModel));
+            }
+        });
         episodeRecyclerView.setAdapter(episodeAdapter);
     }
+}
+
+interface EpisodeSelection {
+    void episodeSelected(EpisodeResultModel episodeResultModel);
 }

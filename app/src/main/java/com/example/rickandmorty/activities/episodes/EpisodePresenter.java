@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 class EpisodePresenter {
 
-    private APIImplementation apiImplementation;
     private EpisodesActivity episodesActivity;
 
     EpisodePresenter(EpisodesActivity episodesActivity) {
@@ -17,7 +16,7 @@ class EpisodePresenter {
 
     void fetchEpisodes() {
 
-        apiImplementation = new APIImplementation(episodesActivity, new EpisodeResponseInterface() {
+        APIImplementation apiImplementation = new APIImplementation(new EpisodeResponseInterface() {
             @Override
             public void episodeList(ArrayList<EpisodeResultModel> episodeList) {
                 episodesActivity.setRecyclerViewAdapter(episodeList);
