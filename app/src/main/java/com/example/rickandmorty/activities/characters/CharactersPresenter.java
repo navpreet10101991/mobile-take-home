@@ -7,6 +7,7 @@ import com.example.rickandmorty.networkClasses.APIImplementation;
 import com.example.rickandmorty.networkClasses.responseInterface.CharacterResponseInterface;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 class CharactersPresenter {
 
@@ -16,6 +17,10 @@ class CharactersPresenter {
         this.charactersActivity = charactersActivity;
     }
 
+    /**
+     * Fetch Characters
+     * @param episodeResultModel episode Result model
+     */
     void fetchCharacters(EpisodeResultModel episodeResultModel) {
 
         charactersActivity.displayProgressBar(true);
@@ -25,6 +30,11 @@ class CharactersPresenter {
         }).fetchCharacters(episodeResultModel.getCharacters());
     }
 
+    /**
+     * Separate the Array list into 2 sections with status 'Alive' or 'Dead'
+     * @param characterResultModelArrayList full arraylist of characters
+     * @return ArrayList SectionedModel
+     */
     private ArrayList<SectionedModel> splitCharacters(ArrayList<CharacterResultModel> characterResultModelArrayList) {
 
         ArrayList<SectionedModel> sectionedModelArrayList = new ArrayList<>();
@@ -40,6 +50,9 @@ class CharactersPresenter {
                 deadModelArrayList.add(characterResultModel);
             }
         }
+
+        Collections.sort(aliveModelArrayList, (o1, o2) -> o1.getCreatedDate().compareTo(o2.getCreatedDate()));
+        Collections.sort(deadModelArrayList, (o1, o2) -> o1.getCreatedDate().compareTo(o2.getCreatedDate()));
 
         sectionedModelArrayList.add(new SectionedModel("Alive", aliveModelArrayList));
         sectionedModelArrayList.add(new SectionedModel("Dead", deadModelArrayList));

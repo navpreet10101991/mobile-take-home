@@ -3,7 +3,11 @@ package com.example.rickandmorty.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.rickandmorty.utilities.Keys;
+import com.example.rickandmorty.utilities.Utilities;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CharacterResultModel implements Parcelable {
 
@@ -160,6 +164,14 @@ public class CharacterResultModel implements Parcelable {
         parcel.writeStringList(episode);
         parcel.writeString(url);
         parcel.writeString(created);
+    }
+
+    public Date getCreatedDate() {
+        return Utilities.convertStringToDate(getCreated(), Keys.NETWORKING_INCOMING_FORMAT);
+    }
+
+    public String getCreateDateToDisplay() {
+        return Utilities.changeDateStyle(getCreated(), Keys.NETWORKING_INCOMING_FORMAT, Keys.DISPLAYING_FORMAT);
     }
 }
 

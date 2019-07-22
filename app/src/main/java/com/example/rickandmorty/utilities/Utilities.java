@@ -17,4 +17,14 @@ public class Utilities {
         }
         return dateString;
     }
+
+    public static Date convertStringToDate(String dateString, SimpleDateFormat incomingFormat) {
+
+        try {
+            return incomingFormat.parse(dateString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

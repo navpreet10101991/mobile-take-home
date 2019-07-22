@@ -73,12 +73,9 @@ class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHold
 
         private void setClickListeners() {
 
-            mainCardLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    EpisodeResultModel episodeResultModel = episodesArrayList.get(getAdapterPosition());
-                    episodeSelection.episodeSelected(episodeResultModel);
-                }
+            mainCardLayout.setOnClickListener(view -> {
+                EpisodeResultModel episodeResultModel = episodesArrayList.get(getAdapterPosition());
+                episodeSelection.episodeSelected(episodeResultModel);
             });
         }
     }

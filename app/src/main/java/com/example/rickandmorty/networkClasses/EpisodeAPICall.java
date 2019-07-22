@@ -1,6 +1,5 @@
 package com.example.rickandmorty.networkClasses;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.rickandmorty.model.EpisodeResultModel;
@@ -124,6 +123,5 @@ class EpisodeAPICall {
         } catch (JSONException jsonException) {
             jsonException.printStackTrace();
         }
-
     }
 }

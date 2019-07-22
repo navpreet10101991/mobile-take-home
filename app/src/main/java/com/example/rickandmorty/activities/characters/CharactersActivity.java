@@ -26,6 +26,12 @@ public class CharactersActivity extends AppCompatActivity {
     private RecyclerView charactersRecyclerView;
     private ProgressBar progressBar;
 
+    /**
+     * This method creates the intent to this activity
+     * @param context Context of the activity from which to start this activity
+     * @param episodeResultModel Bundle Data
+     * @return Intent representing this activity
+     */
     public static Intent createIntent(Context context, EpisodeResultModel episodeResultModel) {
 
         Intent intent = new Intent(context, CharactersActivity.class);
@@ -49,11 +55,18 @@ public class CharactersActivity extends AppCompatActivity {
         getData();
     }
 
+    /**
+     * Inflate Views of the activity
+     */
     private void inflateViews() {
         charactersRecyclerView = findViewById(R.id.charactersRecyclerView);
         progressBar = findViewById(R.id.progressBar);
     }
 
+    /**
+     * Fetch the data from the Intent received
+     * Call Presenter's method to fetch characters of the selected character.
+     */
     private void getData() {
         Intent intent = getIntent();
         if (intent != null) {
@@ -68,12 +81,20 @@ public class CharactersActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Show the data in the Recycler View
+     * @param characterResultModelArrayList list of characters
+     */
     void setRecyclerViewAdapter(ArrayList<SectionedModel> characterResultModelArrayList) {
         charactersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         SectionCharacterAdapter sectionCharacterAdapter = new SectionCharacterAdapter(characterResultModelArrayList, this, characterResultModel -> startActivity(CharacterDetailActivity.newIntent(CharactersActivity.this, characterResultModel)));
         charactersRecyclerView.setAdapter(sectionCharacterAdapter);
     }
 
+    /**
+     *  Show/Hide Progress Bar to indicate loading of characters
+     * @param isVisible if true then show the progress bar and false then hide the progress bar
+     */
     void displayProgressBar(boolean isVisible) {
         if (isVisible) {
             progressBar.setVisibility(View.VISIBLE);
@@ -83,6 +104,9 @@ public class CharactersActivity extends AppCompatActivity {
     }
 }
 
+/**
+ *  Callback for character tap
+ */
 interface CharacterSelection {
     void characterSelected(CharacterResultModel characterResultModel);
 }

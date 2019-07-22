@@ -77,7 +77,7 @@ public class CharacterDetailActivity extends AppCompatActivity {
         gender.setText(String.format(getString(R.string.stringName), "Gender", characterResultModel.getGender()));
         species.setText(String.format(getString(R.string.stringName), "Species", characterResultModel.getSpecies()));
         type.setText(String.format(getString(R.string.stringName), "Type", characterResultModel.getType()));
-        createdOn.setText(String.format(getString(R.string.stringName), "Created On", characterResultModel.getCreated()));
+        createdOn.setText(String.format(getString(R.string.stringName), "Created On", characterResultModel.getCreateDateToDisplay()));
 
         characterDetailPresenter.getImage(characterResultModel.getImage());
     }

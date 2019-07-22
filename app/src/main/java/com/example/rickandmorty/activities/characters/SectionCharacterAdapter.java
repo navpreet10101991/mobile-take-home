@@ -96,8 +96,12 @@ class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterVi
 
     @Override
     public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
-        holder.characterName.setText(characterResultModelArrayList.get(position).getName());
-        holder.status.setText(characterResultModelArrayList.get(position).getStatus());
+
+        CharacterResultModel characterResultModel = characterResultModelArrayList.get(position);
+
+        holder.characterName.setText(characterResultModel.getName());
+        holder.status.setText(characterResultModel.getStatus());
+        holder.createdDate.setText(characterResultModel.getCreateDateToDisplay());
     }
 
     @Override
@@ -110,10 +114,11 @@ class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterVi
 
     class CharacterViewHolder extends RecyclerView.ViewHolder {
 
-        TextView characterName, status;
+        TextView characterName, status, createdDate;
         CardView mainCardLayout;
 
         CharacterViewHolder(@NonNull View itemView) {
+
             super(itemView);
 
             inflateViews(itemView);
@@ -125,6 +130,7 @@ class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterVi
             mainCardLayout = itemView.findViewById(R.id.mainCardLayout);
             characterName = itemView.findViewById(R.id.characterName);
             status = itemView.findViewById(R.id.status);
+            createdDate = itemView.findViewById(R.id.createdOn);
         }
 
         private void setClickListeners() {

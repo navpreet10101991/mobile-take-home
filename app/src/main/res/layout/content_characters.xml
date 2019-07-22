@@ -8,7 +8,6 @@
     tools:context=".activities.characters.CharactersActivity"
     tools:showIn="@layout/activity_characters">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/charactersRecyclerView"
         android:layout_width="match_parent"
